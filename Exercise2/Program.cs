@@ -136,14 +136,8 @@ namespace Exercise2
 
         public static void UnZipTheFile(string archiveFile, string outputDirectory)
         {
-
-            using (var zipArchive = ZipFile.Open(archiveFile, ZipArchiveMode.Read))
-            {
-                zipArchive.ExtractToDirectory(outputDirectory);
-                zipArchive.Dispose();
-                Console.WriteLine("Zip file extracted to " + outputDirectory);
-            }
-
+            ZipFile.ExtractToDirectory(archiveFile,outputDirectory);
+            Console.WriteLine("Zip file extracted to " + outputDirectory);
         }
     }
 }
