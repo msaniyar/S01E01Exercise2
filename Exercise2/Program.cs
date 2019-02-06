@@ -51,8 +51,15 @@ namespace Exercise2
                     UnZipTheFile(archiveFile, outputDirectory);
 
                     var unzippedSize = DirectorySizeCalculation(new DirectoryInfo(@outputDirectory));
-
-                    Console.WriteLine("Compress ratio is {0}%", CompressRatioCalculation(unzippedSize, zippedSize).ToString("F")); // 2 digits after dot
+                    if (unzippedSize == 0)
+                    {
+                        //Cannot divide to zero so inform the user.
+                        Console.WriteLine("Unzipped file size is 0. Compression rate cannot be calculated.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Compress ratio is {0}%", CompressRatioCalculation(unzippedSize, zippedSize).ToString("F")); // 2 digits after dot
+                    }
                     Console.WriteLine("Oldest file in zipfile is {0} days old.", OldestFileCalculation(archiveFile));
 
                 }
@@ -66,11 +73,6 @@ namespace Exercise2
                 {
 
                     Console.WriteLine("This directory is not exist. Please try again.");
-                }
-
-                catch (System.DivideByZeroException)
-                {
-                    Console.WriteLine("Unzipped file size is 0. Compression rate cannot be calculated.");
                 }
 
                 catch (Exception e)
