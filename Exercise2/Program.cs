@@ -121,11 +121,10 @@ namespace Exercise2
         public static int OldestFileCalculation(string file)
         {
             var archive = ZipFile.Open(file, ZipArchiveMode.Read);
-            var entries = archive.Entries;
             var today = DateTime.Now;
             var oldestDate = 0.0;
 
-            foreach (var entry in entries)
+            foreach (var entry in archive.Entries)
             {
                 if ((today - entry.LastWriteTime).TotalDays > oldestDate)
                 {
