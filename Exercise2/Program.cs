@@ -117,6 +117,7 @@ namespace Exercise2
             return ((double)zippedSize / unzippedSize) * 100; //Casting long to double for solving calculation problem
         }
 
+        // This method calculates oldest file in zip file.
         public static int OldestFileCalculation(string file)
         {
             var archive = ZipFile.Open(file, ZipArchiveMode.Read);
@@ -132,6 +133,8 @@ namespace Exercise2
                 }
 
             }
+
+            archive.Dispose(); // We need to dispose ZipArchive to release object
 
             return Convert.ToInt32(oldestDate); //Return int for better representation
         }
